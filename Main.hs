@@ -3,20 +3,23 @@
 import Afx
 
 
-add_And_ :: String -> String -> String
-add_And_ = (++)
+add_And_ :: Num a => a -> a -> a
+add_And_ = (+)
 
 _IsBetween_And_ :: Ord a => a -> a -> a -> Bool
-_IsBetween_And_ a b c = a > b && a < c
+_IsBetween_And_ a b c = [afx| (°a greater than °b) and (°a lower than °c) |]
 
+_LowerThan_, _GreaterThan_ :: Ord a => a -> a -> Bool
+_LowerThan_ = (<)
+_GreaterThan_ = (>)
 
-main = let a = "a"
-           b = "b"
-           c = 3
-           d = 2
-           e = 5
-        in do 
-          print ([afx| add °a and °b |])
-          print ([afx| °c is between °d and °e |])
-          print ([afx| #3 is between #2 and #5 |])
-          print ([afx| #2.1 is between #2.0 and #3.1 |])
+_And_ :: Bool -> Bool -> Bool
+_And_ = (&&) 
+
+main = do 
+  let a = 1
+      b = 2
+      c = 3
+  print [afx| °a is between °b and °c |]
+  print [afx| °b is between °a and °c |]
+    
